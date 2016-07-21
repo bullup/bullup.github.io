@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 6.6 (453293)"/><meta name="altitude" content="38.28201675415039"/><meta name="author" content="717334482@qq.com"/><meta name="created" content="2016-04-26 02:22:15 +0000"/><meta name="latitude" content="39.94128805667426"/><meta name="longitude" content="116.4479561708799"/><meta name="source" content="desktop.mac"/><meta name="updated" content="2016-04-26 10:41:43 +0000"/><title>SJ47 3BAdding</title></head><body>
+<div>这堂课讲的东西有点多，我们一点一点来看吧</div>
+<div>1、JAVA数据类型</div>
+<div>包括基本数据类型和引用数据类型</div>
+<div>这里主要说下基本数据类型，因为突然冒出的boolean类型，让不少同学有点闷吧。基本数据类型为<span style="color: rgb(0, 0, 0); font-family: 'Microsoft YaHei'; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; background-color: rgb(255, 255, 255);">byte、short、int、long、char、float、double、boolean。</span></div>
+<div><span style="font-family: 'Microsoft YaHei';">byte      由1个字节8位表示，是最小的整数类型。主要用于节省内存空间关键。当操作来自网络、文件或者其他IO的数据流时，byte类型特别有用。取值范围为:[-128, 127]. byte的默认值为0。</span></div>
+<div><span style="font-family: 'Microsoft YaHei';">short      用16位表示，取值范围为：[- 2^15, 2^15 - 1]。short可能是最不常用的类型了。可以通过整型字面值或者字符字面值赋值，前提是不超出范围（16 bit）。short类型参与运算的时候，一样被提升为int或者更高的类型（顺序为 byte short int long float double)。</span></div>
+<div>int      用32位表示, [- 2^31, 2^31 - 1]。有符号的二进制补码表示的整数。常用语控制循环，注意byte 和 short在运算中会被提升为int类型或更高。Java 8以后，可以使用int类型表示无符号32位整数[ 0, 2^31 - 1]。</div>
+<div>long      用64位表示， [- 2^63, 2^63 - 1。默认值为0L]。当需要计算非常大的数时，如果int不足以容纳大小，可以使用long类型。如果long也不够，可以使用BigInteger类。</div>
+<div>char      用16 位表示， [0, 65535], [0, 2^16 -1]。从'\u0000'到'\uffff'。无符号，默认值为'\u0000'。Java使用Unicode字符集表示字符，Unicode是完全国际化的字符集，可以表示全部人类语言中的字符。Unicode需要16位宽，所以Java中的char类型也使用16 bit表示。 赋值可能是这样的：</div>
+<div>     char ch1 = 88;</div>
+<div>     char ch2 = 'A';</div>
+<div>ASCII字符集占用了Unicode的前127个值。之所以把char归入整型，是因为Java为char提供算术运算支持，例如可以ch2++；之后ch2就变成Y。当char进行加减乘除运算的时候，也被转换成int类型，必须显式转化回来。</div>
+<div> float      使用32位表示，对应单精度浮点数，运行速度相比double更快，占内存更小，但是当数值非常大或者非常小的时候会变得不精确。精度要求不高的时候可以使用float类型，声明赋值示例：</div>
+<div>     float f1 =10;  </div>
+<div>     f1 = 10L;  </div>
+<div>     f1 = 10.0f;</div>
+<div>可以将byte、short、int、long、char赋给float类型，java自动完成转换。</div>
+<div>double      用64位表示，将浮点子面子赋给某个变量时，如果不显示在字面值后面加f或者F，则默认为double类型。java.lang.Math中的函数都采用double类型。如果double和float都无法达到想要的精度，可以使用BigDecimal类。 </div>
+<div><span style="color: rgb(0, 0, 0); font-family: 'Microsoft YaHei'; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; background-color: rgb(255, 255, 255);">boolean     只有两个值true和false，默认为false。boolean与是否为0没有任何关系，但是可以根据想要的逻辑进行转换。许多地方都需要用到boolean类型。</span></div>
+<div><br/></div>
+<div>CheckBox</div>
+<div>是一个用于选中or未选中的控件，使用起来跟其他View类似，有一个特别的方法isChecked()，可用于获取是否选中的状态，xml 使用示例：</div>
+<div>&lt;CheckBox</div>
+<div>            android:id="@+id/whipped_cream_checkbox"</div>
+<div>            android:layout_width="wrap_content"</div>
+<div>            android:layout_height="wrap_content"</div>
+<div>            android:onClick="whippedCreamClick"</div>
+<div>            android:paddingLeft="24dp"</div>
+<div>            android:text="@string/whipped_cream"</div>
+<div>            android:textSize="16sp" /&gt;</div>
+<div><br/></div>
+<div>Log</div>
+<div>可用于在 Android Studio 控制台内输出信息的一个类，该类提供了若干静态方法：</div>
+<div>Log.v(String tag, String msg); </div>
+<div>Log.d(String tag, String msg); </div>
+<div>Log.i(String tag, String msg); </div>
+<div>Log.w(String tag, String msg); </div>
+<div>Log.e(String tag, String msg);</div>
+<div>分别对应 Verbose，Debug，Info，Warning，Error。</div>
+<div>tag是一个标识，可以是任意字符串，通常可以使用类名+方法名， 主要是用来在查看日志时提供一个筛选条件。</div>
+<div>如：Log.v("MainActivity", "Name: " + name);</div>
+<div><img src="SJ47%203BAdding.resources/131578D0-03A6-4C51-98CE-09E806EF5C79.png" height="382" width="2192"/></div>
+<div><br/></div>
+<div>ScrollView</div>
+<div>a.用于视频垂直滚动的一个控件，使用时，当视图内容超出屏幕时，可以滚动</div>
+<div>b.在xml使用时，只能包含一个子View，如：</div>
+<div><img src="SJ47%203BAdding.resources/DC4ADBCE-35BA-4DD7-A073-B25294B53B87.png" height="684" width="1538"/></div>
+<div><img src="SJ47%203BAdding.resources/BC1EC733-5FA0-4C65-8932-223C26FDC90E.png" height="1094" width="1460"/></div>
+<div><br/></div>
+<div>EditText</div>
+<div>用于用户输入的一个控件，使用起来也很简单</div>
+<div>&lt;EditText</div>
+<div>            android:id="@+id/name_field"</div>
+<div>            android:layout_width="match_parent"</div>
+<div>            android:layout_height="wrap_content"</div>
+<div>            android:hint="@string/name"</div>
+<div>            android:inputType="textCapWords" /&gt;</div>
+<div>在java 代码中获取用户输入的文字</div>
+<div>        EditText nameText = (EditText) findViewById(R.id.name_field);</div>
+<div>        String name = nameText.getText().toString();</div>
+<div><br/></div>
+<div>条件判断 if/else</div>
+<div>用于判断的语句，if后面带一个括号，括号里边是判断条件，如果满足就执行接下来的代码，如果不满足 就执行else 中的代码。如果不关心不满足的情况，else 可以不写，视频中的示例：</div>
+<div><img src="SJ47%203BAdding.resources/40F0942B-53EF-448F-BBC1-84A2D82A8298.png" height="608" width="1998"/></div>
+<div>咖啡订单应用中不考虑else的代码：</div>
+<div><img src="SJ47%203BAdding.resources/FCF9E5EB-D3BE-4E35-9492-DE9A8D682806.png" height="646" width="1550"/></div>
+<div><br/></div>
+<div>Toast</div>
+<div>用于显示提示信息的类，使用Android手机的应该经常有见到，显示信息过一会就会消失，使用示例：</div>
+<div>Toast.makeText(MainActivity.this, "You cannot less than 1 coffee", Toast.LENGTH_SHORT).show();</div>
+<div>makeText方法需要三个参数，第一个是一个Activity对象，一般在Activity中直接传入this就好，第二是要显示的信息，第三个是用于控制显示时长，有两个值：Toast.LENGTH_SHORT(时间较短)，Toast.LENGTH_LONG(时间较长)。</div>
+<div>注意一点，使用Toast 一定要记得调用show()方法，否则很容易出现写了Toast却不显示的神奇现象。</div>
+<div><br/></div>
+<div>Intent</div>
+<div>意图，用于打开Activity，这里主要说几个Android自带的常用Intent</div>
+<div><br/></div>
+<div>添加一个日历提醒</div>
+<div>public void addEvent(String title, String location, Calendar begin, Calendar end) {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_INSERT)</div>
+<div>            .setData(Events.CONTENT_URI)</div>
+<div>            .putExtra(Events.TITLE, title)</div>
+<div>            .putExtra(Events.EVENT_LOCATION, location)</div>
+<div>            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, begin)</div>
+<div>            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, end);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>拍照或拍摄视频并返回</div>
+<div>static final int REQUEST_IMAGE_CAPTURE = 1;</div>
+<div>static final Uri mLocationForPhotos;</div>
+<div><br/></div>
+<div>public void capturePhoto(String targetFilename) {</div>
+<div>    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);</div>
+<div>    intent.putExtra(MediaStore.EXTRA_OUTPUT,</div>
+<div>            Uri.withAppendedPath(mLocationForPhotos, targetFilename));</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>@Override</div>
+<div>protected void onActivityResult(int requestCode, int resultCode, Intent data) {</div>
+<div>    if (requestCode == REQUEST_IMAGE_CAPTURE &amp;&amp; resultCode == RESULT_OK) {</div>
+<div>        Bitmap thumbnail = data.getParcelable("data");</div>
+<div>        // Do other work with full size photo saved in mLocationForPhotos</div>
+<div>        ...</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div><br/></div>
+<div>选择一个联系人</div>
+<div>static final int REQUEST_SELECT_CONTACT = 1;</div>
+<div><br/></div>
+<div>public void selectContact() {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_PICK);</div>
+<div>    intent.setType(ContactsContract.Contacts.CONTENT_TYPE);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivityForResult(intent, REQUEST_SELECT_CONTACT);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>@Override</div>
+<div>protected void onActivityResult(int requestCode, int resultCode, Intent data) {</div>
+<div>    if (requestCode == REQUEST_SELECT_CONTACT &amp;&amp; resultCode == RESULT_OK) {</div>
+<div>        Uri contactUri = data.getData();</div>
+<div>        // Do something with the selected contact at contactUri</div>
+<div>        ...</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>查看联系人</div>
+<div>public void viewContact(Uri contactUri) {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_VIEW, contactUri);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>添加联系人</div>
+<div>public void insertContact(String name, String email) {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_INSERT);</div>
+<div>    intent.setType(Contacts.CONTENT_TYPE);</div>
+<div>    intent.putExtra(Intents.Insert.NAME, name);</div>
+<div>    intent.putExtra(Intents.Insert.EMAIL, email);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>写邮件</div>
+<div>public void composeEmail(String[] addresses, String subject, Uri attachment) {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_SEND);</div>
+<div>    intent.setType("*/*");</div>
+<div>    intent.putExtra(Intent.EXTRA_EMAIL, addresses);</div>
+<div>    intent.putExtra(Intent.EXTRA_SUBJECT, subject);</div>
+<div>    intent.putExtra(Intent.EXTRA_STREAM, attachment);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div>或者</div>
+<div>public void composeEmail(String[] addresses, String subject) {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_SENDTO);</div>
+<div>    intent.setData(Uri.parse("mailto:")); // only email apps should handle this</div>
+<div>    intent.putExtra(Intent.EXTRA_EMAIL, addresses);</div>
+<div>    intent.putExtra(Intent.EXTRA_SUBJECT, subject);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>播放一个音频文件</div>
+<div>public void playMedia(Uri file) {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_VIEW);</div>
+<div>    intent.setData(file);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>打电话</div>
+<div>public void dialPhoneNumber(String phoneNumber) {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_DIAL);</div>
+<div>    intent.setData(Uri.parse("tel:" + phoneNumber));</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>打开wifi 设置</div>
+<div>public void openWifiSettings() {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_WIFI_SETTINGS);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>发送短信</div>
+<div>public void composeMmsMessage(String message, Uri attachment) {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_SENDTO);</div>
+<div>    intent.setType(HTTP.PLAIN_TEXT_TYPE);</div>
+<div>    intent.putExtra("sms_body", message);</div>
+<div>    intent.putExtra(Intent.EXTRA_STREAM, attachment);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div>或者</div>
+<div>public void composeMmsMessage(String message, Uri attachment) {</div>
+<div>    Intent intent = new Intent(Intent.ACTION_SEND);</div>
+<div>    intent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond</div>
+<div>    intent.putExtra("sms_body", message);</div>
+<div>    intent.putExtra(Intent.EXTRA_STREAM, attachment);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>打开一个网页</div>
+<div>public void openWebPage(String url) {</div>
+<div>    Uri webpage = Uri.parse(url);</div>
+<div>    Intent intent = new Intent(Intent.ACTION_VIEW, webpage);</div>
+<div>    if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>        startActivity(intent);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>其他一些常用的Android自带的Intent和具体用法可以到下面网站查看（需要梯子）</div>
+<div><a href="http://developer.android.com/guide/components/intents-common.html">http://developer.android.com/guide/components/intents-common.html</a></div>
+<div><br/></div>
+<div>注释</div>
+<div>Android 有以下几种注释</div>
+<div>常用的双斜杠注释</div>
+<div><img src="SJ47%203BAdding.resources/FDDD7ABD-2C41-4B91-96F1-FEF2891DA1C0.png" height="234" width="1964"/></div>
+<div>方法注释</div>
+<div><img src="SJ47%203BAdding.resources/363F7EFA-89DC-478C-B0D5-D55ABD512C69.png" height="330" width="1682"/></div>
+<div>还有这种</div>
+<div><img src="SJ47%203BAdding.resources/4B343A7E-DF61-4616-B16E-75105801DFE6.png" height="184" width="804"/></div>
+<div>以上三种就是用于java 代码中的注释</div>
+<div>xml中的注释</div>
+<div><img src="SJ47%203BAdding.resources/6FFD24BE-E999-459F-8AC5-D65A8A784DD8.png" height="806" width="1122"/></div>
+<div>资源xml文件中也是这种</div>
+<div><img src="SJ47%203BAdding.resources/39DC09CD-9F5A-4858-8ADA-032A4202309B.png" height="368" width="1308"/></div>
+<div><br/></div>
+<div>本地化</div>
+<div>Android使用的是ISO标准语言代码，除了视频中给出的示例外，其他国家对应的两个字母的语言代码可以在下面这个网站上查询</div>
+<div><a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"/><a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes"/><a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes</a></div>
+<div>截图：</div>
+<div><img src="SJ47%203BAdding.resources/F2ACEBA3-D5B2-4EF5-9696-F727B09841AD.png" height="1498" width="2322"/></div>
+<div><br/></div>
+<div>Styles</div>
+<div>为了xml 中不过多的书写重复代码，造成代码冗余，同时也为了方便修改，我们可以把一些控件相同的属性抽取，写成style，如：</div>
+<div>&lt;!--Style for header text in the order form--&gt;</div>
+<div>    &lt;style name="HeaderTextStyle"&gt;</div>
+<div>        &lt;item name="android:layout_width"&gt;wrap_content&lt;/item&gt;</div>
+<div>        &lt;item name="android:layout_height"&gt;48dp&lt;/item&gt;</div>
+<div>        &lt;item name="android:gravity"&gt;center_vertical&lt;/item&gt;</div>
+<div>        &lt;item name="android:textAllCaps"&gt;true&lt;/item&gt;</div>
+<div>        &lt;item name="android:textSize"&gt;15sp&lt;/item&gt;</div>
+<div>    &lt;/style&gt;</div>
+<div><br/></div>
+<div>布局文件xml中调用</div>
+<div><img src="SJ47%203BAdding.resources/159042D0-F0C4-431A-9950-3DB3C666834B.png" height="172" width="1068"/></div>
+<div><br/></div>
+<div>完善后的点咖啡应用，为了方便用户查看，我保留了order summary，且会随数量的改变和奶油或巧克力的是否选择而同时变化</div>
+<div>java代码</div>
+<div>package com.example.android.justjava;</div>
+<div><br/></div>
+<div>import android.content.Intent;</div>
+<div>import android.net.Uri;</div>
+<div>import android.os.Bundle;</div>
+<div>import android.support.v7.app.AppCompatActivity;</div>
+<div>import android.view.View;</div>
+<div>import android.widget.CheckBox;</div>
+<div>import android.widget.EditText;</div>
+<div>import android.widget.TextView;</div>
+<div>import android.widget.Toast;</div>
+<div><br/></div>
+<div>import java.text.NumberFormat;</div>
+<div><br/></div>
+<div>public class MainActivity extends AppCompatActivity {</div>
+<div><br/></div>
+<div>    private int quantity = 2;</div>
+<div><br/></div>
+<div>    @Override</div>
+<div>    protected void onCreate(Bundle savedInstanceState) {</div>
+<div>        super.onCreate(savedInstanceState);</div>
+<div>        setContentView(R.layout.activity_main);</div>
+<div>        displayOrderInfo();</div>
+<div>    }</div>
+<div><br/></div>
+<div>    /**</div>
+<div>     * This method is called when the whipped cream checkbox is clicked.</div>
+<div>     */</div>
+<div>    public void whippedCreamClick(View view) {</div>
+<div>        displayOrderInfo();</div>
+<div>    }</div>
+<div><br/></div>
+<div>    /**</div>
+<div>     * This method is called when the chocolate checkbox is clicked.</div>
+<div>     */</div>
+<div>    public void chocolateClick(View view) {</div>
+<div>        displayOrderInfo();</div>
+<div>    }</div>
+<div><br/></div>
+<div>    /**</div>
+<div>     * This method is called when the plus button is clicked.</div>
+<div>     */</div>
+<div>    public void increment(View view) {</div>
+<div>        if (quantity == 100) {</div>
+<div>            //Show an error message as a toast</div>
+<div>            Toast.makeText(MainActivity.this, "You cannot have more than 100 coffees", Toast.LENGTH_SHORT).show();</div>
+<div>            //Exit this method early because there's nothing left to do</div>
+<div>            return;</div>
+<div>        }</div>
+<div><br/></div>
+<div>        quantity = quantity + 1;</div>
+<div>        display(quantity);</div>
+<div>        displayOrderInfo();</div>
+<div>    }</div>
+<div><br/></div>
+<div>    /**</div>
+<div>     * This method is called when the minus button is clicked.</div>
+<div>     */</div>
+<div>    public void decrement(View view) {</div>
+<div>        if (quantity == 1) {</div>
+<div>            //Show an error message as a toast</div>
+<div>            Toast.makeText(MainActivity.this, "You cannot less than 1 coffee", Toast.LENGTH_LONG).show();</div>
+<div>            //Exit this method early because there's nothing left to do</div>
+<div>            return;</div>
+<div>        }</div>
+<div><br/></div>
+<div>        quantity = quantity - 1;</div>
+<div>        display(quantity);</div>
+<div>        displayOrderInfo();</div>
+<div>    }</div>
+<div><br/></div>
+<div>    /**</div>
+<div>     * This method is called when the order button is clicked.</div>
+<div>     */</div>
+<div>    public void submitOrder(View view) {</div>
+<div>        EditText nameText = (EditText) findViewById(R.id.name_field);</div>
+<div>        String name = nameText.getText().toString();</div>
+<div><br/></div>
+<div>        CheckBox whippedCreamCheckbox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);</div>
+<div>        boolean hasWhippedCream = whippedCreamCheckbox.isChecked();</div>
+<div><br/></div>
+<div>        CheckBox chocolateCheckbox = (CheckBox) findViewById(R.id.chocolate_checkbox);</div>
+<div>        boolean hasChocolate = chocolateCheckbox.isChecked();</div>
+<div><br/></div>
+<div>        int price = calculatePrice(hasWhippedCream, hasChocolate);</div>
+<div>        String priceMessage = createOrderSummary(name, price, hasWhippedCream, hasChocolate);</div>
+<div><br/></div>
+<div>        Intent intent = new Intent(Intent.ACTION_SENDTO);</div>
+<div>        intent.setData(Uri.parse("mailto:")); // only email apps should handle this</div>
+<div>        intent.putExtra(Intent.EXTRA_TEXT, priceMessage);</div>
+<div>        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + name);</div>
+<div>        if (intent.resolveActivity(getPackageManager()) != null) {</div>
+<div>            startActivity(intent);</div>
+<div>        }</div>
+<div><br/></div>
+<div>    }</div>
+<div><br/></div>
+<div>    /**</div>
+<div>     * display summary of the order</div>
+<div>     */</div>
+<div>    private void displayOrderInfo() {</div>
+<div>        EditText nameText = (EditText) findViewById(R.id.name_field);</div>
+<div>        String name = nameText.getText().toString();</div>
+<div><br/></div>
+<div>        CheckBox whippedCreamCheckbox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);</div>
+<div>        boolean hasWhippedCream = whippedCreamCheckbox.isChecked();</div>
+<div><br/></div>
+<div>        CheckBox chocolateCheckbox = (CheckBox) findViewById(R.id.chocolate_checkbox);</div>
+<div>        boolean hasChocolate = chocolateCheckbox.isChecked();</div>
+<div><br/></div>
+<div>        int price = calculatePrice(hasWhippedCream, hasChocolate);</div>
+<div>        String priceMessage = createOrderSummary(name, price, hasWhippedCream, hasChocolate);</div>
+<div>        displayPriceMessage(priceMessage);</div>
+<div>    }</div>
+<div><br/></div>
+<div>    /**</div>
+<div>     * Calculates the price of the order.</div>
+<div>     *</div>
+<div>     * @param addWhippedCream is whether or not the user wants whipped cream</div>
+<div>     * @param addChocolate    is whether or not the user wants chocolate topping</div>
+<div>     * @return total price</div>
+<div>     */</div>
+<div>    private int calculatePrice(boolean addWhippedCream, boolean addChocolate) {</div>
+<div>        // price of 1 cup of coffee</div>
+<div>        int basePrice = 5;</div>
+<div><br/></div>
+<div>        //Add $1 if the user wants whipped cream</div>
+<div>        if (addWhippedCream) {</div>
+<div>            basePrice = basePrice + 1;</div>
+<div>        }</div>
+<div><br/></div>
+<div>        //Add $2 if the user wants chocolate</div>
+<div>        if (addChocolate) {</div>
+<div>            basePrice = basePrice + 2;</div>
+<div>        }</div>
+<div><br/></div>
+<div>        //Calculate the total order price by multiplying by quantity</div>
+<div>        return quantity * basePrice;</div>
+<div>    }</div>
+<div><br/></div>
+<div>    /**</div>
+<div>     * create summary of the order</div>
+<div>     *</div>
+<div>     * @param name            of the customer</div>
+<div>     * @param price           of the order</div>
+<div>     * @param addWhippedCream is whether or not the user wants whipped cream topping</div>
+<div>     * @param addChocolate    is whether or not the user wants chocolate topping</div>
+<div>     * @return text summary</div>
+<div>     */</div>
+<div>    private String createOrderSummary(String name, int price, boolean addWhippedCream, boolean addChocolate) {</div>
+<div>        String priceMessage = getString(R.string.order_summary_name, name);</div>
+<div>        priceMessage += "\n" + getString(R.string.order_summary_whipped_cream, addWhippedCream);</div>
+<div>        priceMessage += "\n" + getString(R.string.order_summary_chocolate, addChocolate);</div>
+<div>        priceMessage += "\n" + getString(R.string.order_summary_quantity, quantity);</div>
+<div>        priceMessage += "\n" + getString(R.string.order_summary_price, NumberFormat.getCurrencyInstance().format(price));</div>
+<div>        priceMessage += "\n" + getString(R.string.thank_you);</div>
+<div>        return priceMessage;</div>
+<div>    }</div>
+<div><br/></div>
+<div>    /**</div>
+<div>     * This method displays the given quantity value on the screen.</div>
+<div>     */</div>
+<div>    private void display(int number) {</div>
+<div>        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);</div>
+<div>        quantityTextView.setText("" + number);</div>
+<div>    }</div>
+<div><br/></div>
+<div>    /**</div>
+<div>     * This method displays the given text on the screen.</div>
+<div>     */</div>
+<div>    private void displayPriceMessage(String priceMessage) {</div>
+<div>        TextView priceTextView = (TextView) findViewById(R.id.order_summary_text_view);</div>
+<div>        priceTextView.setText(priceMessage);</div>
+<div>    }</div>
+<div>}</div>
+<div><br/></div>
+<div>xml 代码</div>
+<div>&lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div>&lt;ScrollView xmlns:android="http://schemas.android.com/apk/res/android"</div>
+<div>    xmlns:tools="http://schemas.android.com/tools"</div>
+<div>    android:layout_width="match_parent"</div>
+<div>    android:layout_height="match_parent"</div>
+<div>    tools:context=".MainActivity"&gt;</div>
+<div><br/></div>
+<div>    &lt;LinearLayout</div>
+<div>        android:layout_width="match_parent"</div>
+<div>        android:layout_height="wrap_content"</div>
+<div>        android:orientation="vertical"</div>
+<div>        android:paddingBottom="@dimen/activity_vertical_margin"</div>
+<div>        android:paddingLeft="@dimen/activity_horizontal_margin"</div>
+<div>        android:paddingRight="@dimen/activity_horizontal_margin"</div>
+<div>        android:paddingTop="@dimen/activity_vertical_margin"&gt;</div>
+<div><br/></div>
+<div>        &lt;EditText</div>
+<div>            android:id="@+id/name_field"</div>
+<div>            android:layout_width="match_parent"</div>
+<div>            android:layout_height="wrap_content"</div>
+<div>            android:hint="@string/name"</div>
+<div>            android:inputType="textCapWords" /&gt;</div>
+<div><br/></div>
+<div>        &lt;TextView</div>
+<div>            style="@style/HeaderTextStyle"</div>
+<div>            android:text="@string/toppings" /&gt;</div>
+<div><br/></div>
+<div>        &lt;CheckBox</div>
+<div>            android:id="@+id/whipped_cream_checkbox"</div>
+<div>            android:layout_width="wrap_content"</div>
+<div>            android:layout_height="wrap_content"</div>
+<div>            android:onClick="whippedCreamClick"</div>
+<div>            android:paddingLeft="24dp"</div>
+<div>            android:text="@string/whipped_cream"</div>
+<div>            android:textSize="16sp" /&gt;</div>
+<div><br/></div>
+<div>        &lt;CheckBox</div>
+<div>            android:id="@+id/chocolate_checkbox"</div>
+<div>            android:layout_width="wrap_content"</div>
+<div>            android:layout_height="wrap_content"</div>
+<div>            android:onClick="chocolateClick"</div>
+<div>            android:paddingLeft="24dp"</div>
+<div>            android:text="@string/chocolate"</div>
+<div>            android:textSize="16sp" /&gt;</div>
+<div><br/></div>
+<div>        &lt;TextView</div>
+<div>            style="@style/HeaderTextStyle"</div>
+<div>            android:text="@string/quantity" /&gt;</div>
+<div><br/></div>
+<div>        &lt;LinearLayout</div>
+<div>            android:layout_width="wrap_content"</div>
+<div>            android:layout_height="wrap_content"</div>
+<div>            android:orientation="horizontal"&gt;</div>
+<div><br/></div>
+<div>            &lt;Button</div>
+<div>                android:layout_width="48dp"</div>
+<div>                android:layout_height="48dp"</div>
+<div>                android:onClick="decrement"</div>
+<div>                android:text="@string/minus" /&gt;</div>
+<div><br/></div>
+<div>            &lt;TextView</div>
+<div>                android:id="@+id/quantity_text_view"</div>
+<div>                android:layout_width="wrap_content"</div>
+<div>                android:layout_height="wrap_content"</div>
+<div>                android:layout_marginLeft="5dp"</div>
+<div>                android:layout_marginRight="5dp"</div>
+<div>                android:text="@string/initial_quantity_value"</div>
+<div>                android:textAllCaps="true"</div>
+<div>                android:textColor="@android:color/black"</div>
+<div>                android:textSize="16sp" /&gt;</div>
+<div><br/></div>
+<div>            &lt;Button</div>
+<div>                android:layout_width="48dp"</div>
+<div>                android:layout_height="48dp"</div>
+<div>                android:onClick="increment"</div>
+<div>                android:text="@string/plus" /&gt;</div>
+<div>        &lt;/LinearLayout&gt;</div>
+<div><br/></div>
+<div>        &lt;TextView</div>
+<div>            style="@style/HeaderTextStyle"</div>
+<div>            android:text="@string/order_summary" /&gt;</div>
+<div><br/></div>
+<div>        &lt;TextView</div>
+<div>            android:id="@+id/order_summary_text_view"</div>
+<div>            android:layout_width="wrap_content"</div>
+<div>            android:layout_height="wrap_content"</div>
+<div>            android:layout_marginLeft="5dp"</div>
+<div>            android:text="@string/order_summary_price"</div>
+<div>            android:textColor="@android:color/black"</div>
+<div>            android:textSize="16sp" /&gt;</div>
+<div><br/></div>
+<div>        &lt;Button</div>
+<div>            android:layout_width="wrap_content"</div>
+<div>            android:layout_height="wrap_content"</div>
+<div>            android:layout_marginTop="16dp"</div>
+<div>            android:onClick="submitOrder"</div>
+<div>            android:text="@string/order" /&gt;</div>
+<div><br/></div>
+<div>    &lt;/LinearLayout&gt;</div>
+<div>&lt;/ScrollView&gt;</div>
+<div><br/></div>
+<div>strings中</div>
+<div>&lt;resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2"&gt;</div>
+<div>    &lt;string name="app_name"&gt;Just Java&lt;/string&gt;</div>
+<div>    &lt;string name="name"&gt;Name&lt;/string&gt;</div>
+<div>    &lt;string name="toppings"&gt;Toppings&lt;/string&gt;</div>
+<div>    &lt;string name="whipped_cream"&gt;Whipped cream&lt;/string&gt;</div>
+<div>    &lt;string name="chocolate"&gt;Chocolate&lt;/string&gt;</div>
+<div>    &lt;string name="quantity"&gt;Quantity&lt;/string&gt;</div>
+<div>    &lt;string name="initial_quantity_value"&gt;2&lt;/string&gt;</div>
+<div>    &lt;string name="plus"&gt;+&lt;/string&gt;</div>
+<div>    &lt;string name="minus"&gt;-&lt;/string&gt;</div>
+<div>    &lt;string name="order"&gt;Order&lt;/string&gt;</div>
+<div>    &lt;string name="order_summary"&gt;Order Summary&lt;/string&gt;</div>
+<div>    &lt;string name="order_summary_name"&gt;Name: &lt;xliff:g example="Amy" id="name"&gt;%s&lt;/xliff:g&gt;&lt;/string&gt;</div>
+<div>    &lt;string name="order_summary_whipped_cream"&gt;Add whipped cream? &lt;xliff:g exmaple="true" id="addWhippedCream"&gt;%b&lt;/xliff:g&gt; &lt;/string&gt;</div>
+<div>    &lt;string name="order_summary_chocolate"&gt;Add chocolate? &lt;xliff:g exmaple="true" id="addChocolate"&gt;%b&lt;/xliff:g&gt;&lt;/string&gt;</div>
+<div>    &lt;string name="order_summary_quantity"&gt;Quantity: &lt;xliff:g exmaple="2" id="quantity"&gt;%d&lt;/xliff:g&gt;&lt;/string&gt;</div>
+<div>    &lt;string name="order_summary_price"&gt;Total: &lt;xliff:g exmaple="$10" id="price"&gt;%s&lt;/xliff:g&gt;&lt;/string&gt;</div>
+<div>    &lt;string name="thank_you"&gt;Thank you!&lt;/string&gt;</div>
+<div>    &lt;string name="order_summary_email_subject"&gt;Just Java order for &lt;xliff:g exmaple="Amy" id="name"&gt;%s&lt;/xliff:g&gt;&lt;/string&gt;</div>
+<div><br/></div>
+<div>&lt;/resources&gt;</div>
+<div><br/></div>
+<div>styles中</div>
+<div>&lt;resources&gt;</div>
+<div><br/></div>
+<div>    &lt;!-- Base application theme. --&gt;</div>
+<div>    &lt;style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"&gt;</div>
+<div>        &lt;!-- Customize your theme here. --&gt;</div>
+<div>        &lt;item name="colorPrimary"&gt;@color/colorPrimary&lt;/item&gt;</div>
+<div>        &lt;item name="colorPrimaryDark"&gt;@color/colorPrimaryDark&lt;/item&gt;</div>
+<div>        &lt;item name="colorAccent"&gt;@color/colorAccent&lt;/item&gt;</div>
+<div>    &lt;/style&gt;</div>
+<div><br/></div>
+<div>    &lt;!--Style for header text in the order form--&gt;</div>
+<div>    &lt;style name="HeaderTextStyle"&gt;</div>
+<div>        &lt;item name="android:layout_width"&gt;wrap_content&lt;/item&gt;</div>
+<div>        &lt;item name="android:layout_height"&gt;48dp&lt;/item&gt;</div>
+<div>        &lt;item name="android:gravity"&gt;center_vertical&lt;/item&gt;</div>
+<div>        &lt;item name="android:textAllCaps"&gt;true&lt;/item&gt;</div>
+<div>        &lt;item name="android:textSize"&gt;15sp&lt;/item&gt;</div>
+<div>    &lt;/style&gt;</div>
+<div><br/></div>
+<div>&lt;/resources&gt;</div>
+<div><br/></div>
+<div>效果图</div>
+<div><img src="SJ47%203BAdding.resources/y1.png" height="700" width="433"/></div>
+<div><img src="SJ47%203BAdding.resources/y2.png" height="700" width="436"/></div>
+<div><br/></div>
+</body></html>
