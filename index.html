@@ -1,0 +1,89 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- 缩进2个字符
+<style type="text/css">
+#box,#box2,#box3,#box4,#box5{text-indent: 2em;}
+</style>
+-->
+<script type="text/javascript">
+//===========================简单的点击展开关闭效果====================================
+function openShutManager(oTargetObj){
+  var oTargetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
+
+  if(oTargetObj.style.display!="none"){
+    oTargetObj.style.display="none";
+  } else {
+    oTargetObj.style.display="inline";
+  }
+}
+</script>
+<title>无标题文档</title>
+</head>
+<body>
+
+  <div><a href="###" onclick="openShutManager('box2')">2015年</a></div>
+  <div id="box2" style="display:none">
+    <div>
+      <ul>
+        <li>
+          <div>
+            haha
+          </div>  
+        </li>
+
+        <li>
+          <div>
+            哈哈
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+<div><a href="###" onclick="openShutManager('box5')">2016年</a></div>
+<div id="box5" style="display:none">
+  <ul>
+     <li>
+          <div><a href="###" onclick="openShutManager('box56')">6月</a> </div>
+          <div id="box56" style="display:none">
+              <ul>
+                 <li>
+                  <div class="row">
+                    <a target="_blank" href="http://gank.io/2016/07/11">拜托给小李子一个小金人吧！拜托。🙏</a>
+
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <a target="_blank" href="/2016/02/26">当所有的人生疑问都能得到回答，那些爱过的遗忘的所有的，答案。（见今日视频</a>
+                  </div>
+                </li>
+              </ul> 
+          </div> 
+      </li>
+     <li>
+          <div><a href="###" onclick="openShutManager('box57')">7月</a> </div>
+          <div id="box57" style="display:none">
+              <ul>
+                 <li>
+                  <div class="row">
+                    <a target="_blank" href="/2016/02/29">拜托给小李子一个小金人吧！拜托。🙏</a>
+
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <a target="_blank" href="/2016/02/26">当所有的人生疑问都能得到回答，那些爱过的遗忘的所有的，答案。（见今日视频</a>
+                  </div>
+                </li>
+              </ul> 
+          </div> 
+      </li>
+  </ur>
+       
+  </div>         
+</body>
+
+</html>
